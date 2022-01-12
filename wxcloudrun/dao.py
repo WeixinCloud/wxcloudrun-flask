@@ -1,5 +1,7 @@
 import logging
 
+from sqlalchemy.exc import OperationalError
+
 from wxcloudrun import db
 from wxcloudrun.model import Counters
 
@@ -15,7 +17,7 @@ def query_counterbyid(id):
     """
     try:
         return Counters.query.filter(Counters.id == id).first()
-    except BaseException as e:
+    except OperationalError as e:
         logger.info("query_counterbyid errorMsg= {} ".format(e))
         return None
 
@@ -31,7 +33,7 @@ def delete_counterbyid(id):
             return
         db.session.delete(counter)
         db.session.commit()
-    except BaseException as e:
+    except OperationalError as e:
         logger.info("delete_counterbyid errorMsg= {} ".format(e))
 
 
@@ -43,7 +45,7 @@ def insert_counter(counter):
     try:
         db.session.add(counter)
         db.session.commit()
-    except BaseException as e:
+    except OperationalError as e:
         logger.info("insert_counter errorMsg= {} ".format(e))
 
 
@@ -58,5 +60,5 @@ def update_counterbyid(counter):
             return
         db.session.flush()
         db.session.commit()
-    except BaseException as e:
+    except OperationalError as e:
         logger.info("update_counterbyid errorMsg= {} ".format(e))

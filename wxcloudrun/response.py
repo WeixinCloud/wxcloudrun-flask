@@ -13,6 +13,6 @@ def make_succ_response(data):
     return Response(data, mimetype='application/json')
 
 
-def make_err_response(errorMsg):
-    data = json.dumps({'code': -1, 'errorMsg': errorMsg})
+def make_err_response(err_msg):
+    data = json.dumps({'code': -1, 'errorMsg': err_msg})
     return Response(data, mimetype='application/json')
