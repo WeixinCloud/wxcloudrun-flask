@@ -22,10 +22,6 @@ RUN pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple
 # pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
 && pip install --user -r requirements.txt
 
-ENV MYSQL_USERNAME=test_acc
-ENV MYSQL_PASSWORD=121101mxf#include
-ENV MYSQL_ADDRESS=sh-cynosdbmysql-grp-7d7j0b5e.sql.tencentcdb.com:27592
-
 # 设定对外端口
 EXPOSE 80
 
