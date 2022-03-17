@@ -17,7 +17,7 @@
 .
 ├── Dockerfile dockerfile       dockerfile
 ├── README.md README.md         README.md文件
-├── container.config.json       微信云托管流水线配置
+├── container.config.json       模板部署「服务设置」初始化配置（二开请忽略）
 ├── requirements.txt            依赖包文件
 ├── config.py                   项目的总配置文件  里面包含数据库 web应用 日志等各种配置
 ├── run.py                      flask项目管理文件 与项目进行交互的命令行工具集的入口
