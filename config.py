@@ -14,4 +14,5 @@ appid = os.environ.get("APPID")
 key = os.environ.get("KEY")
 default_from = 'auto'
 default_to = 'zh'
+default_timeout = 15
 

@@ -84,10 +84,11 @@ def fanyi():
     trans_to = config.default_to
     appid = config.appid
     trans_key = config.key
-    tmp = str(appid) + q + salt + trans_key
+    tmp = str(appid) + q + str(salt) + trans_key
     trans_sign = hashlib.md5(tmp.encode(encoding='utf-8')).hexdigest()
-    res = requests.get(config.trans_url.format(q=q, trans_from=trans_from, trans_to=trans_to,
-                                         appid=appid, salt=salt, trans_sign=trans_sign))
+    trans_url = config.trans_url.format(q=q, trans_from=trans_from, trans_to=trans_to,
+                                         appid=appid, salt=salt, trans_sign=trans_sign)
+    res = requests.get(trans_url, timeout=config.default_timeout)
     trans_result = res.json().get("trans_result", "")
     if trans_result:
         trans_result = trans_result[0].get("dst", "")
