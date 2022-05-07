@@ -146,7 +146,7 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify({
-          fanyi_content: $(".fanyi_request").html(),
+          fanyi_content: $(".fanyi_request").val(),
         }),
       }).done(function (res) {
         if (res && res.data !== undefined) {

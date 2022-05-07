@@ -92,4 +92,4 @@ def fanyi():
     trans_result = res.json().get("trans_result", "")
     if trans_result:
         trans_result = trans_result[0].get("dst", "")
-    return make_err_response(trans_result)
+    return make_succ_response(trans_result)
