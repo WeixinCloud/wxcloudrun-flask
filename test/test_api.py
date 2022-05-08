@@ -10,7 +10,7 @@ class TestApi(unittest.TestCase):
     def test_fanyi(self):
         test_case = {
             "apple": "苹果",
-            1: 1,
+            1: "1",
             "苹果": "苹果",
             "": ""
         }
