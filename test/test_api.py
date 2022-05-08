@@ -18,3 +18,7 @@ class TestApi(unittest.TestCase):
             })
             data = res.json().get("data")
             self.assertEqual(data, v)
+
+
+if __name__ == '__main__':
+    unittest.main()
