@@ -1,6 +1,8 @@
 import unittest
 import requests
-import config
+
+
+test_url = 'http://127.0.0.1:8056'
 
 
 class TestApi(unittest.TestCase):
@@ -13,7 +15,7 @@ class TestApi(unittest.TestCase):
             "": ""
         }
         for k, v in test_case.items():
-            res = requests.post(config.test_url + '/api/fanyi', json={
+            res = requests.post(test_url + '/api/fanyi', json={
                 "fanyi_content": k
             })
             data = res.json().get("data")
