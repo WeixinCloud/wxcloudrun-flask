@@ -78,7 +78,7 @@ def fanyi():
     params = request.get_json()
     if 'fanyi_content' not in params:
         return make_err_response('缺少fanyi_content参数')
-    q = params['fanyi_content']
+    q = str(params['fanyi_content'])
     salt = random.randint(100, 999)
     trans_from = config.default_from
     trans_to = config.default_to
