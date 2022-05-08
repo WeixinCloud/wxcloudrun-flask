@@ -16,3 +16,5 @@ default_from = 'auto'
 default_to = 'zh'
 default_timeout = 15
 
+#test
+test_url = 'http://127.0.0.1:8056'
