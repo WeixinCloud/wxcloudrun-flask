@@ -33,6 +33,16 @@
         font-weight: bolder;
         margin: 0 8px;
       }
+      .fanyi_request {
+        font-size: 18px;
+        font-weight: bolder;
+        margin: 0 8px;
+      }
+      .fanyi_response {
+        font-size: 18px;
+        font-weight: bolder;
+        margin: 0 8px;
+      }
       .count-text {
         width: 280px;
         display: flex;
@@ -85,15 +95,17 @@
             >清零</a
           >
         </div>
-        <small
-          class="text-black-50"
-          style="display: flex; justify-content: center; margin-bottom: 16px"
-          >扫码加入微信云托管用户群</small
+      </div>
+      <div style="text-align: center">
+        <input type="text" class="count-text fanyi_request">
+        <p class="count-text"><span class="fanyi_response"></span></p>
+        <div
+          style="display: flex; justify-content: center; margin-bottom: 80px"
         >
-        <img
-          class="qrcode middle"
-          src="https://qcloudimg.tencent-cloud.cn/raw/89b46988d3cd73d8a56e76a1b82bb377.png"
-        />
+          <a class="btn btn-success btn-lg count-button" style="background: #07C160; border: 0;" onclick="fanyi()"
+            >翻译</a
+          >
+        </div>
       </div>
     </div>
   </body>
@@ -125,6 +137,20 @@
       }).done(function (res) {
         if (res && res.data !== undefined) {
           $(".count-number").html(res.data);
+        }
+      });
+    }
+    function fanyi() {
+      $.ajax("/api/fanyi", {
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({
+          fanyi_content: $(".fanyi_request").val(),
+        }),
+      }).done(function (res) {
+        if (res && res.data !== undefined) {
+          $(".fanyi_response").html(res.data);
         }
       });
     }
