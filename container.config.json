@@ -9,7 +9,17 @@
 	"cpu": 1,                               
 	"mem": 2,                           
 	"policyType": "cpu",                       
-	"policyThreshold": 60,                
+	"policyThreshold": 60,   
+	"policyDetails": {
+		{
+			"PolicyType": "cpu",
+			"PolicyThreshold": 60
+		},
+		{
+			"PolicyType": "mem",
+			"PolicyThreshold": 60
+		}
+	},
 	"envParams": {},         
 	"customLogs": "stdout",              
 	"initialDelaySeconds": 2,                  
