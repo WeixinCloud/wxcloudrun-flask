@@ -76,6 +76,9 @@ def test2():
     data: bytes = request.data
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
+
+    if msg.get('action','') == 'CheckContainerPath':
+        return make_succ_empty_response()
     print(msg)
     if msgType == 'text':
         res = wmp.replyText(msg, 'Hi~ 终于等到你啦')
