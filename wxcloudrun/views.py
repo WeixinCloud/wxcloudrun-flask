@@ -1,9 +1,12 @@
 from datetime import datetime
+
+import xmltodict
 from flask import render_template, request
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
+from wxcloudrun.tools import WechatMP
 
 
 @app.route('/')
@@ -64,3 +67,19 @@ def get_count():
     """
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
+token = "asdfdasfafd"
+appId = "wxce3c081851aedbac"
+wmp = WechatMP(Token=token, appId=appId, secret='')
+
+@app.route('/test', methods=['POST'])
+def test2():
+    data: bytes = request.data
+    msg = xmltodict.parse(data.decode()).get('xml')
+    msgType = msg.get('MsgType')
+    print(msg)
+    if msgType == 'text':
+        res = wmp.replyText(msg, 'Hi~ 终于等到你啦')
+
+    if msgType == 'image':
+        res = wmp.replyImage(msg, msg.get('MediaId'))
+    return xmltodict.unparse(res)
