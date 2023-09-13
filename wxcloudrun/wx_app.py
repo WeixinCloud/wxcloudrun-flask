@@ -1,13 +1,11 @@
 import re
-import json
-from datetime import datetime
+
 
 import requests
-from pydantic import BaseModel
+
 
 from config import settings
 
-from .cache import Cache
 
 WXAPP = settings.WXAPP
 USERS = settings.USERS
