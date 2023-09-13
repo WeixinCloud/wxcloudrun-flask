@@ -7,6 +7,7 @@ from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 from wxcloudrun.tools import WechatMP
+from wxcloudrun.wx_app import WxAppSender
 
 
 @app.route('/')
@@ -70,13 +71,14 @@ def get_count():
 token = "asdfdasfafd"
 appId = "wxce3c081851aedbac"
 wmp = WechatMP(Token=token, appId=appId, secret='')
-
+sender = WxAppSender()
 @app.route('/test', methods=['POST'])
 def test2():
     data: bytes = request.data
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
-
+    txt = msg.get("Content")
+    sender.send(txt)
     if msg.get('action','') == 'CheckContainerPath':
         return make_succ_empty_response()
     print(msg)

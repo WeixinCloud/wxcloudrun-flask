@@ -1,0 +1,39 @@
+default:
+  USERS: {
+    "admin": {
+      "wxid": "SuMin",
+      "name": "管理员"
+    },
+    "paiyehsu": {
+      "wxid": "SuMin",
+      "name": "苏敏"
+    },
+    "yuanmaomian": {
+      "wxid": "YiZhiDongMianDeMengXiangJia",
+      "name": "袁茂绵"
+    },
+    "mic1on": {
+      "wxid": "MiLe01",
+      "name": "薛锦程"
+    },
+    "weiaigao": {
+      "wxid": "ZhouJinSe",
+      "name": "韦亮亮"
+    },
+    "ngoyatnomman": {
+      "wxid": "SunHuangYong",
+      "name": "孙黄勇"
+    },
+    "LH": {
+      "wxid": "LiuHeng",
+      "name": "刘恒"
+    },
+    "GYuMan": {
+      "wxid": "430b4b372bd1a34dfbc6fb8808975a40",
+      "name": "高钰蔓"
+    },
+    "LingLong": {
+      "wxid": "LingLong",
+      "name": "玲珑"
+    }
+  }
