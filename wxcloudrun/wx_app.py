@@ -16,11 +16,7 @@ class WxAppSender():
 
     def send(self, body, *args, **kwargs):
 
-        if isinstance(body, str):
-            output = self.converter_chatwoot(body, *args, **kwargs)
-        else:
-            output = {}
-        self.__send__(output)
+        self.__send__(body)
 
 
     @classmethod
