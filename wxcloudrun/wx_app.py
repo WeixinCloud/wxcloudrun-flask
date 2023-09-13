@@ -79,7 +79,7 @@ class WxAppSender():
         data = {
             "msgtype": "text",
             "text": {
-                "content": content,  # 让群机器人发送的消息内容。
+                "content": f"中电变压器微信公众号有一条新的私信：{content}",  # 让群机器人发送的消息内容。
                 "mentioned_list": [],
             }
         }
