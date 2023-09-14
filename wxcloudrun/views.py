@@ -82,6 +82,7 @@ def test2():
     if msg.get('action','') == 'CheckContainerPath':
         return make_succ_empty_response()
     print(msg)
+    res = ''
     if msgType == 'text':
         res = wmp.replyText(msg, 'Hi~ 终于等到你啦')
 
@@ -93,7 +94,7 @@ def test2():
 def getMessage():
     data: bytes = request.data
     msg = data.decode()
-    url = f"https://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
+    url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
     resp = requests.get(url)
     print(resp.json())
     return make_succ_response(resp.json())
