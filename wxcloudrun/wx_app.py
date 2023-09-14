@@ -73,13 +73,23 @@ class WxAppSender():
         data = {
             "msgtype": "text",
             "text": {
-                "content": f"中电变压器微信公众号有一条新的私信：{content}",  # 让群机器人发送的消息内容。
+                "content": f"中电变压器微信公众号有一条新的私信：{content.get('Content')},发送方{content.get('FromUserName','')},接收方{content.get('ToUserName','')}",  # 让群机器人发送的消息内容。
                 "mentioned_list": [],
             }
         }
         r = requests.post(url, headers=headers, json=data)  # 利用requests库发送post请求
 
 
+# <xml>
+#   <ToUserName><![CDATA[toUser]]></ToUserName>
+#   <FromUserName><![CDATA[fromUser]]></FromUserName>
+#   <CreateTime>1348831860</CreateTime>
+#   <MsgType><![CDATA[text]]></MsgType>
+#   <Content><![CDATA[this is a test]]></Content>
+#   <MsgId>1234567890123456</MsgId>
+#   <MsgDataId>xxxx</MsgDataId>
+#   <Idx>xxxx</Idx>
+# </xml>
 
 
 sender_instance = WxAppSender()

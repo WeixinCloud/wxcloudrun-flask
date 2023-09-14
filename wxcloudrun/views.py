@@ -77,8 +77,7 @@ def test2():
     data: bytes = request.data
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
-    txt = msg.get("Content")
-    sender.send(txt)
+    sender.send(msg)
     if msg.get('action','') == 'CheckContainerPath':
         return make_succ_empty_response()
     print(msg)
