@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import requests
 import xmltodict
 from flask import render_template, request
 from run import app
@@ -87,3 +88,12 @@ def test2():
     if msgType == 'image':
         res = wmp.replyImage(msg, msg.get('MediaId'))
     return xmltodict.unparse(res)
+
+@app.route('/getMessage', methods=['POST'])
+def getMessage():
+    data: bytes = request.data
+    msg = data.decode()
+    url = f"https://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
+    resp = requests.get(url)
+    print(resp.json())
+    return make_succ_response(resp.json())
