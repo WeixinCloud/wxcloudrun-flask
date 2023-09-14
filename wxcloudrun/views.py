@@ -90,12 +90,12 @@ def test2():
         res = wmp.replyImage(msg, msg.get('MediaId'))
     return xmltodict.unparse(res)
 
-@app.route('/getMessage', methods=['POST'])
-def getMessage():
-    data: bytes = request.data
-    msg = data.decode()
-    url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
-    # url = f"http://api.weixin.qq.com/sns/userinfo?openid={msg}&lang=zh_CN"
-    resp = requests.get(url)
-    print(resp.json())
-    return make_succ_response(resp.json())
+# @app.route('/getMessage', methods=['POST'])
+# def getMessage():
+#     data: bytes = request.data
+#     msg = data.decode()
+#     url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
+#     # url = f"http://api.weixin.qq.com/sns/userinfo?openid={msg}&lang=zh_CN"
+#     resp = requests.get(url)
+#     print(resp.json())
+#     return make_succ_response(resp.json())
