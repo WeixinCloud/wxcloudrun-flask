@@ -69,25 +69,26 @@ def get_count():
     """
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
+
+
 token = "asdfdasfafd"
 appId = "wxce3c081851aedbac"
 wmp = WechatMP(Token=token, appId=appId, secret='')
 sender = WxAppSender()
+
+
 @app.route('/test', methods=['POST'])
 def test2():
     data: bytes = request.data
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
     sender.send(msg)
-    if msg.get('action','') == 'CheckContainerPath':
+    if msg.get('action', '') == 'CheckContainerPath':
         return make_succ_empty_response()
     print(msg)
-    res = ''
-    if msgType == 'text':
-        res = wmp.replyText(msg, 'Hi~ 终于等到你啦')
 
-    if msgType == 'image':
-        res = wmp.replyImage(msg, msg.get('MediaId'))
+    res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
+
     return xmltodict.unparse(res)
 
 # @app.route('/getMessage', methods=['POST'])
