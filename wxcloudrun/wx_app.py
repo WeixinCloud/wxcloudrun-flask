@@ -67,17 +67,17 @@ class WxAppSender():
 
     @classmethod
     def __send__(cls, content):
-
-        url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=99a8cdb7-b622-4b8d-8437-76c2e61ed747"  # 这里就是群机器人的Webhook地址
-        headers = {"Content-Type": "application/json"}  # http数据头，类型为json
-        data = {
-            "msgtype": "text",
-            "text": {
-                "content": f"中电变压器微信公众号有一条新的私信：{content.get('Content')}",  # 让群机器人发送的消息内容。
-                "mentioned_list": [],
+        if content.get('Content'):
+            url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=99a8cdb7-b622-4b8d-8437-76c2e61ed747"  # 这里就是群机器人的Webhook地址
+            headers = {"Content-Type": "application/json"}  # http数据头，类型为json
+            data = {
+                "msgtype": "text",
+                "text": {
+                    "content": f"中电变压器微信公众号有一条新的私信：{content.get('Content')}",  # 让群机器人发送的消息内容。
+                    "mentioned_list": [],
+                }
             }
-        }
-        r = requests.post(url, headers=headers, json=data)  # 利用requests库发送post请求
+            r = requests.post(url, headers=headers, json=data)  # 利用requests库发送post请求
 
 
 # <xml>
