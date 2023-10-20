@@ -1,4 +1,5 @@
 import logging
+import random
 from datetime import datetime
 
 import requests
@@ -83,6 +84,8 @@ def test2():
     data: bytes = request.data
     logger.error("--------data----",str(data))
     print("-------------data--------")
+    with open(f'AA{random.randint(0,100)}.txt','w') as f:
+        f.write(str(request.data))
 
     try:
         print(data)
@@ -127,6 +130,8 @@ def test2():
 @app.route('/getMessage', methods=['POST'])
 def getMessage():
     data: bytes = request.data
+    with open(f'BB{random.randint(0,100)}.txt','w') as f:
+        f.write(str(request.data))
     msg = xmltodict.parse(data.decode()).get('xml')
     tousername = msg.get('ToUserName')
     fromusername = msg.get('FromUserName')
@@ -138,7 +143,7 @@ def getMessage():
            "url":"http://www.baidu.com",
            "miniprogram":{
            },
-           "client_msg_id":"MSG_000001",
+           "client_msg_id":f"MSG_{str(random.randint(1,999999)).zfill(6)}",
            "data":{
 
                    "character_string2.DATA":{
