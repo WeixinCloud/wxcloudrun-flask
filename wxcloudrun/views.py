@@ -146,19 +146,19 @@ def getMessage():
            "client_msg_id":f"MSG_{str(random.randint(1,999999)).zfill(6)}",
            "data":{
 
-                   "character_string2.DATA":{
+                   "character_string2":{
                        "value":"111"
                    },
-                   "thing3.DATA": {
+                   "thing3": {
                        "value":"222"
                    },
-                   "time6.DATA": {
+                   "time6": {
                        "value":"222"
                    },
-                   "thing9.DATA": {
+                   "thing9": {
                        "value":"333"
                    },
-                   "thing4.DATA": {
+                   "thing4": {
                        "value":"4444"
                    }
            }
