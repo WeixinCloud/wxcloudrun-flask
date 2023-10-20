@@ -124,12 +124,42 @@ def test2():
 
     return xmltodict.unparse(res)
 
-# @app.route('/getMessage', methods=['POST'])
-# def getMessage():
-#     data: bytes = request.data
-#     msg = data.decode()
-#     url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
-#     # url = f"http://api.weixin.qq.com/sns/userinfo?openid={msg}&lang=zh_CN"
-#     resp = requests.get(url)
-#     print(resp.json())
-#     return make_succ_response(resp.json())
+@app.route('/getMessage', methods=['POST'])
+def getMessage():
+    data: bytes = request.data
+    msg = xmltodict.parse(data.decode()).get('xml')
+    tousername = msg.get('ToUserName')
+    fromusername = msg.get('FromUserName')
+
+    url = f"https://api.weixin.qq.com/cgi-bin/message/template/send"
+    send_data =  {
+           "touser":tousername,
+           "template_id":"gzwCdG32PHvIoAwKzFkzqi8PfRhCYMNcxfFtkqnfHmA",
+           "url":"http://www.baidu.com",
+           "miniprogram":{
+           },
+           "client_msg_id":"MSG_000001",
+           "data":{
+
+                   "character_string2.DATA":{
+                       "value":"111"
+                   },
+                   "thing3.DATA": {
+                       "value":"222"
+                   },
+                   "time6.DATA": {
+                       "value":"222"
+                   },
+                   "thing9.DATA": {
+                       "value":"333"
+                   },
+                   "thing4.DATA": {
+                       "value":"4444"
+                   }
+           }
+       }
+    resp = requests.post(url, json=send_data)
+    url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
+    # url = f"http://api.weixin.qq.com/sns/userinfo?openid={msg}&lang=zh_CN"
+    print(resp.json())
+    return make_succ_response(resp.json())
