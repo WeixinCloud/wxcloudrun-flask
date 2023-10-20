@@ -80,6 +80,12 @@ sender = WxAppSender()
 @app.route('/test', methods=['POST'])
 def test2():
     data: bytes = request.data
+    print("--------data----")
+    print(data)
+    try:
+        print(data.decode())
+    except Exception as e:
+        print(e)
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
     sender.send(msg)
@@ -87,12 +93,7 @@ def test2():
         return make_succ_empty_response()
     print(msg)
     print(msg)
-    print("--------data----")
-    print(data)
-    try:
-        print(data.decode())
-    except Exception as e:
-        print(e)
+
 
     res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
 
