@@ -131,7 +131,7 @@ def getMessage():
     tousername = msg.get('ToUserName')
     fromusername = msg.get('FromUserName')
 
-    url = f"https://api.weixin.qq.com/cgi-bin/message/template/send"
+    url = f"http://api.weixin.qq.com/cgi-bin/message/template/send"
     send_data =  {
            "touser":tousername,
            "template_id":"gzwCdG32PHvIoAwKzFkzqi8PfRhCYMNcxfFtkqnfHmA",
@@ -159,7 +159,7 @@ def getMessage():
            }
        }
     resp = requests.post(url, json=send_data)
-    url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
+    # url = f"http://api.weixin.qq.com/cgi-bin/user/info?openid={msg}&lang=zh_CN"
     # url = f"http://api.weixin.qq.com/sns/userinfo?openid={msg}&lang=zh_CN"
     print(resp.json())
     return make_succ_response(resp.json())
