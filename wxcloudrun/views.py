@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 import requests
@@ -75,17 +76,18 @@ token = "asdfdasfafd"
 appId = "wxce3c081851aedbac"
 wmp = WechatMP(Token=token, appId=appId, secret='')
 sender = WxAppSender()
-
+logger = logging.getLogger('log')
 
 @app.route('/test', methods=['POST'])
 def test2():
     data: bytes = request.data
-    print("--------data----")
-    print(data)
+    logger.info("--------data----")
+
     try:
-        print(data.decode())
+        logger.info(data)
+        logger.info(data.decode())
     except Exception as e:
-        print(e)
+        logger.error(e)
     msg = xmltodict.parse(data.decode()).get('xml')
     msgType = msg.get('MsgType')
     sender.send(msg)
