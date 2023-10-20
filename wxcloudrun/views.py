@@ -80,26 +80,29 @@ logger = logging.getLogger('log')
 
 @app.route('/test', methods=['POST'])
 def test2():
-    data: bytes = request.data
     logger.info("--------data----")
+    print("-------------data--------")
+    print(request.data)
+    return ""
+    #
+    # try:
+    #     print(data)
+    #     logger.info(data)
+    #     logger.info(data.decode())
+    # except Exception as e:
+    #     logger.error(e)
+    # msg = xmltodict.parse(data.decode()).get('xml')
+    # msgType = msg.get('MsgType')
+    # sender.send(msg)
+    # if msg.get('action', '') == 'CheckContainerPath':
+    #     return make_succ_empty_response()
+    # print(msg)
+    # print(msg)
 
-    try:
-        logger.info(data)
-        logger.info(data.decode())
-    except Exception as e:
-        logger.error(e)
-    msg = xmltodict.parse(data.decode()).get('xml')
-    msgType = msg.get('MsgType')
-    sender.send(msg)
-    if msg.get('action', '') == 'CheckContainerPath':
-        return make_succ_empty_response()
-    print(msg)
-    print(msg)
 
-
-    res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
-
-    return xmltodict.unparse(res)
+    # res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
+    #
+    # return xmltodict.unparse(res)
 
 # @app.route('/getMessage', methods=['POST'])
 # def getMessage():
