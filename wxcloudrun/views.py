@@ -119,8 +119,8 @@ def test2():
     #        }
     #    }
 
-    # res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
-    res = wmp.replyText(msg, str(data))
+    res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
+    # res = wmp.replyText(msg, str(data))
 
     return xmltodict.unparse(res)
 
