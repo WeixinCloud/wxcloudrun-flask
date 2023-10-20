@@ -81,7 +81,7 @@ logger = logging.getLogger('log')
 @app.route('/test', methods=['POST'])
 def test2():
     data: bytes = request.data
-    logger.info("--------data----")
+    logger.error("--------data----",str(data))
     print("-------------data--------")
 
     try:
@@ -96,8 +96,28 @@ def test2():
     if msg.get('action', '') == 'CheckContainerPath':
         return make_succ_empty_response()
     print(msg)
-    print(msg)
 
+
+    # send_data =  {
+    #        "touser":"OPENID",
+    #        "template_id":"ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",
+    #        "url":"http://www.baidu.com",
+    #        "miniprogram":{
+    #        },
+    #        "client_msg_id":"MSG_000001",
+    #        "data":{
+    #
+    #                "keyword1":{
+    #                    "value":"巧克力"
+    #                },
+    #                "keyword2": {
+    #                    "value":"39.8元"
+    #                },
+    #                "keyword3": {
+    #                    "value":"2014年9月22日"
+    #                }
+    #        }
+    #    }
 
     # res = wmp.replyText(msg, '您好，欢迎您关注并联系中电变压器，您可点击链接随时与我们取得联系：https://work.weixin.qq.com/kfid/kfc810b2cf6bdf83836')
     res = wmp.replyText(msg, str(data))
