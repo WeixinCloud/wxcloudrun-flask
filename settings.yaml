@@ -1,0 +1,73 @@
+dev:
+  REDIS: {
+    "host": "r-gc7066ooe477c8h72epd.redis.cn-chengdu.rds.aliyuncs.com",
+    "port": 6379,
+    "password": "qweQWE123!@#",
+    "max_connections": 10,
+    "db": 11
+  }
+  WXAPP: {
+    "cache_key": "wx_app_access_token",
+    "agentid": 1000008,
+    "corpid": "YrDePwMQuhEj",
+    "corpsecret": "VShICryuccikEauPmtYknabt"
+  }
+
+  ALLOW_JOBS: {
+    "gitlab/hooks": {
+      "build_name": "publish",
+      "build_stage": "deploy",
+      "touser": "SuMin",
+      "toparty": "",
+      "project_name": "中电招投标",
+      "publish_delay": 1,
+      "publish_during": 5
+    }
+  }
+  pingcode: {
+    grant_type: 'client_credentials',
+    client_id: 'AabEmwVkCbCX',
+    client_secret: 'eqtwzUxbNvhwkYHsepnvUpNo'
+  }
+
+
+prod:
+  REDIS: {
+    "host": "r-gc7066ooe477c8h72epd.redis.cn-chengdu.rds.aliyuncs.com",
+    "port": 6379,
+    "password": "qweQWE123!@#",
+    "max_connections": 10,
+    "db": 11
+  }
+  WXAPP: {
+    "cache_key": "wx_app_access_token",
+    "agentid": 1000008,
+    "corpid": "wwfe5d3c92fe4e4278",
+    "corpsecret": "ByuylRjNTdcNWii1inRquUZBPzQk1ZKoNDW3eAOiGv8"
+  }
+  ALLOW_JOBS: {
+    "bidding/admin": {
+      "build_name": "publish",
+      "build_stage": "deploy",
+      "touser": "SuMin|ASeYiLa",
+      "toparty": "2|3",
+      "project_name": "中电招投标",
+      "publish_delay": 1,
+      "publish_during": 5
+    },
+    "ceii/mall/api": {
+      "build_name": "publish",
+      "build_stage": "deploy",
+      "touser": "SunHuangYong|LiuHeng",
+      "toparty": "5",
+      "project_name": "中电互联",
+      "publish_delay": 1,
+      "publish_during": 5
+    }
+  }
+  pingcode: {
+    grant_type: 'client_credentials',
+    client_id: 'zVWZAWaKXZfY',
+    client_secret: 'LoJXySAHVEppkXRemepgPCRj'
+  }
+
