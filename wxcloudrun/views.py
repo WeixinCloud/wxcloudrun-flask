@@ -71,11 +71,11 @@ def get_count():
 def wx_check():
     import hashlib
     from config import wx_token
-    data = request.get_json()
-    signature = data['signature']
-    timestamp = data['timestamp']
-    nonce = data['nonce']
-    echostr = data['echostr']
+
+    signature = request.args.get('signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
 
     token = wx_token
 
