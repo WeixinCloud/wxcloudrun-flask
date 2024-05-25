@@ -67,7 +67,7 @@ def get_count():
 
 
 
-@app.route('/api/wx', methods=['GET'])
+@app.route('/api/wx', methods=['GET', 'POST'])
 def wx_check():
     import hashlib
     from config import wx_token
