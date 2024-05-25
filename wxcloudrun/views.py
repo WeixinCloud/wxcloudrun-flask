@@ -6,6 +6,10 @@ from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 import time
 import xmltodict
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @app.route('/')
 def index():
@@ -95,7 +99,7 @@ def wx_check():
 @app.route('/api/wx/test', methods=['GET', 'POST'])
 def wx_test():
     body = request.get_json()
-    print(body)
+    logger.info("body: {}", body)
     return ""
 
 @app.route('/api/wx/msg', methods=['GET', 'POST'])
