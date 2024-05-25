@@ -95,7 +95,8 @@ def wx_check():
 @app.route('/api/wx/msg', methods=['POST'])
 def handler_msg():
     body = request.get_data()
-    req = xmltodict.parse(body)
+    req = xmltodict.parse(body)['xml']
+    print(req)
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
@@ -109,7 +110,7 @@ def handler_msg():
         <Content><![CDATA[{content}]]></Content>
     </xml>
     '''
-    msg = tpl.format(toUser=from_user, from_user=to_user,
+    msg = tpl.format(toUser=from_user, fromUser=to_user,
                      createTime=int(time.time()), content=content)
     return msg
 
