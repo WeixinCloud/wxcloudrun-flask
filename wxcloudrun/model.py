@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from wxcloudrun import db
+from wxcloudrun import db, app
 
 
 # 计数表
@@ -13,3 +13,10 @@ class Counters(db.Model):
     count = db.Column(db.Integer, default=1)
     created_at = db.Column('createdAt', db.TIMESTAMP, nullable=False, default=datetime.now())
     updated_at = db.Column('updatedAt', db.TIMESTAMP, nullable=False, default=datetime.now())
+
+
+
+
+with app.app_context():
+    db.create_all()
+

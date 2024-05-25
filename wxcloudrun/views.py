@@ -64,3 +64,29 @@ def get_count():
     """
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
+
+
+
+@app.route('/api/wx', methods=['GET'])
+def wx_check():
+    import hashlib
+    from config import wx_token
+    data = request.get_json()
+    signature = data['signature']
+    timestamp = data['timestamp']
+    nonce = data['nonce']
+    echostr = data['echostr']
+
+    token = wx_token
+
+    list = [token, timestamp, nonce]
+    list.sort()
+    sha1 = hashlib.sha1()
+    map(sha1.update, list)
+    hashcode = sha1.hexdigest()
+    print("handle/GET func: hashcode, signature: ", hashcode, signature)
+    if hashcode == signature:
+        return echostr
+    else:
+        return ""
+
