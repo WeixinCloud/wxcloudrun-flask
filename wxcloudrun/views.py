@@ -92,7 +92,11 @@ def wx_check():
         return ""
 
 
-@app.route('/api/wx/msg', methods=['POST'])
+@app.route('/api/wx/test', methods=['GET', 'POST'])
+def wx_test():
+    return ""
+
+@app.route('/api/wx/msg', methods=['GET', 'POST'])
 def handler_msg():
     body = request.get_data()
     req = xmltodict.parse(body)['xml']
