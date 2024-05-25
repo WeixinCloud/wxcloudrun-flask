@@ -4,7 +4,8 @@ from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
-
+import time
+import xmltodict
 
 @app.route('/')
 def index():
@@ -89,4 +90,26 @@ def wx_check():
         return echostr
     else:
         return ""
+
+
+@app.route('/api/wx/msg', methods=['POST'])
+def handler_msg():
+    body = request.get_data()
+    req = xmltodict.parse(body)
+    content = req['Content']
+    to_user = req['ToUserName']
+    from_user = req['FromUserName']
+
+    tpl = '''
+    <xml>
+        <ToUserName><![CDATA[{toUser}]]></ToUserName>
+        <FromUserName><![CDATA[{fromUser}]]></FromUserName>
+        <CreateTime>{createTime}</CreateTime>
+        <MsgType><![CDATA[text]]></MsgType>
+        <Content><![CDATA[{content}]]></Content>
+    </xml>
+    '''
+    msg = tpl.format(toUser=from_user, from_user=to_user,
+                     createTime=int(time.time()), content=content)
+    return msg
 
