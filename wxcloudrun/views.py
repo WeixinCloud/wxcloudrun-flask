@@ -71,7 +71,6 @@ def get_count():
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
 
 
-
 @app.route('/api/wx', methods=['GET', 'POST'])
 def wx_check():
     import hashlib
@@ -102,11 +101,13 @@ def wx_test():
     logger.info("body: {}", body)
     return ""
 
+
 @app.route('/api/wx/msg', methods=['GET', 'POST'])
 def handler_msg():
     body = request.get_data()
     req = xmltodict.parse(body)['xml']
-    print(req)
+    logger.info("req: {}", req)
+
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
@@ -122,5 +123,6 @@ def handler_msg():
     '''
     msg = tpl.format(toUser=from_user, fromUser=to_user,
                      createTime=int(time.time()), content=content)
-    return msg
 
+    logger.info("rsp:{}", msg)
+    return msg
