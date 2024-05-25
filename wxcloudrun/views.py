@@ -94,6 +94,8 @@ def wx_check():
 
 @app.route('/api/wx/test', methods=['GET', 'POST'])
 def wx_test():
+    body = request.get_json()
+    print(body)
     return ""
 
 @app.route('/api/wx/msg', methods=['GET', 'POST'])
