@@ -45,7 +45,7 @@ def count():
             counter.count += 1
             counter.updated_at = datetime.now()
             update_counterbyid(counter)
-        return make_succ_response(counter.count)
+        return make_succ_response('ok')
 
     # 执行清0操作
     elif action == 'clear':
