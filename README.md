@@ -16,6 +16,18 @@
 ## 实时开发
 代码变动时，不需要重新构建和启动容器，即可查看变动后的效果。请参考[微信云托管实时开发指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/guide/debug/dev.html)
 
+## 快速部署
+
+- 在 [云托管设置 - CLI 密钥](https://cloud.weixin.qq.com/cloudrun/settings/other) 页面，生成密钥。 (wxcloud login 使用）
+- 在 [mysql](https://cloud.weixin.qq.com/cloudrun/mysql) 页面获取 MYSQL_ADDRESS、MYSQL_PASSWORD、MYSQL_USERNAME 三个重要变量
+
+```
+wxcloud login # 必须先登录！否则在 migrate 最后一步失败
+wxcloud migrate # 直接使用 deploy 的话，也会出发 migrate 命令；migrate 按照提示进行
+# 打开新的 Dockerfile 将基础镜像改为 `FROM python:3.9-alpine` （最新的 `python:3-alpine` 会遇到 greenlet 编译的问题）
+wxcloud deploy # 部署，选择 80 端口，对应的环境和应用名字
+```
+
 ## Dockerfile最佳实践
 请参考[如何提高项目构建效率](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/scene/build/speed.html)
 
